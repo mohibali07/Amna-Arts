@@ -5,6 +5,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
+  initHeroRotator();
+  initHeroGallery();
   initProfitCalculator();
   initRegistrationForm();
   initCollectionFilter();
@@ -396,25 +398,116 @@ function initModals() {
 }
 
 /* ==========================================================================
-   6. Smooth Scrolling for Internal Links
+   7. Hero Section Dynamic Phrase Rotator & Interactive Gallery
    ========================================================================== */
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#' || !targetId) return;
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        e.preventDefault();
-        const headerOffset = 80;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+function initHeroRotator() {
+  const rotatorEl = document.getElementById('heroRotatingText');
+  if (!rotatorEl) return;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+  const phrases = [
+    "Luxury Wholesale",
+    "Chiffon & Organza",
+    "Micro 9000 Velvet",
+    "Festive Formals",
+    "Airjet Summer Lawn"
+  ];
+
+  let currentIndex = 0;
+
+  setInterval(() => {
+    rotatorEl.style.opacity = '0';
+    rotatorEl.style.transform = 'translateY(-6px)';
+
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % phrases.length;
+      rotatorEl.textContent = phrases[currentIndex];
+      rotatorEl.style.transform = 'translateY(6px)';
+      
+      setTimeout(() => {
+        rotatorEl.style.opacity = '1';
+        rotatorEl.style.transform = 'translateY(0)';
+      }, 50);
+    }, 280);
+  }, 3200);
+}
+
+function initHeroGallery() {
+  const mainImg = document.getElementById('heroMainImg');
+  const captionTitle = document.getElementById('heroCaptionTitle');
+  const captionSub = document.getElementById('heroCaptionSub');
+  const tabs = document.querySelectorAll('.hero-pill-tab');
+
+  if (!mainImg || !tabs.length) return;
+
+  const slides = [
+    {
+      src: "assets/images/hero-fabrics.jpg",
+      title: "Winter / Festive 2026 Volume III",
+      sub: "Showroom Kashmiri Gate • Bulk Thaan Rolls"
+    },
+    {
+      src: "assets/images/collection-suit.jpg",
+      title: "Royal Maroon 3-Piece Raw Silk",
+      sub: "Heavy Tilla Work & Cutwork Organza Dupatta"
+    },
+    {
+      src: "assets/images/azam-market-heritage.jpg",
+      title: "Azam Cloth Market Wholesale Hub",
+      sub: "Direct Mill Pricing & Same-Day Cargo Bilti"
+    },
+    {
+      src: "assets/images/reseller-app.jpg",
+      title: "Reseller Mobile Application",
+      sub: "Daily 10 AM Drops & One-Tap WhatsApp Share"
+    }
+  ];
+
+  let activeIndex = 0;
+  let autoTimer = null;
+
+  const setSlide = (index) => {
+    activeIndex = index;
+
+    // Update Tab Styles
+    tabs.forEach((tab, i) => {
+      if (i === index) {
+        tab.classList.add('bg-stone-900', 'text-white', 'border-stone-900');
+        tab.classList.remove('bg-white', 'text-stone-600', 'border-stone-200');
+      } else {
+        tab.classList.remove('bg-stone-900', 'text-white', 'border-stone-900');
+        tab.classList.add('bg-white', 'text-stone-600', 'border-stone-200');
       }
     });
+
+    // Crossfade Image
+    mainImg.style.opacity = '0.3';
+    mainImg.style.transform = 'scale(0.99)';
+
+    setTimeout(() => {
+      mainImg.src = slides[index].src;
+      if (captionTitle) captionTitle.textContent = slides[index].title;
+      if (captionSub) captionSub.textContent = slides[index].sub;
+      
+      mainImg.style.opacity = '1';
+      mainImg.style.transform = 'scale(1)';
+    }, 200);
+  };
+
+  tabs.forEach((tab, idx) => {
+    tab.addEventListener('click', () => {
+      clearInterval(autoTimer);
+      setSlide(idx);
+      startAutoCycle();
+    });
   });
+
+  const startAutoCycle = () => {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => {
+      let nextIndex = (activeIndex + 1) % slides.length;
+      setSlide(nextIndex);
+    }, 4500);
+  };
+
+  startAutoCycle();
 }

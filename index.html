@@ -241,9 +241,10 @@
             <span>Direct Mill Wholesale • Azam Cloth Market, Lahore</span>
           </div>
 
-          <!-- Main H1 Headline -->
-          <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-stone-950 tracking-tight leading-[1.12]">
-            Elevate Your Boutique with <span class="text-maroon-900 font-normal italic">Luxury Wholesale</span> Suiting
+          <!-- Main H1 Headline with Smooth Dynamic Rotator -->
+          <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[3.75rem] font-bold text-stone-950 tracking-tight leading-[1.12]">
+            Elevate Your Boutique with <br class="hidden sm:inline">
+            <span id="heroRotatingText" class="text-maroon-900 font-normal italic inline-block transition-all duration-300">Luxury Wholesale</span> Suiting
           </h1>
 
           <!-- Value Proposition Body -->
@@ -271,12 +272,12 @@
 
           <!-- Dual Minimal CTAs -->
           <div class="flex flex-wrap items-center gap-4 pt-1">
-            <a href="#collections" class="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-xs font-semibold text-white bg-maroon-900 hover:bg-stone-950 transition-colors shadow-xs">
+            <a href="#collections" class="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-xs font-semibold text-white bg-maroon-900 hover:bg-stone-950 transition-all shadow-xs transform hover:-translate-y-0.5">
               <span>Explore Digital Catalog</span>
               <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </a>
 
-            <a href="#register-cta" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs font-semibold text-stone-800 bg-white border border-stone-300 hover:border-stone-900 hover:bg-stone-50 transition-colors">
+            <a href="#register-cta" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs font-semibold text-stone-800 bg-white border border-stone-300 hover:border-stone-900 hover:bg-stone-50 transition-all transform hover:-translate-y-0.5">
               <span>Become a Reseller</span>
             </a>
           </div>
@@ -294,26 +295,50 @@
 
         </div>
 
-        <!-- Right Column: Visual Fabric Rolls Showcase (Clean Editorial Frame) -->
+        <!-- Right Column: Interactive Animated Showcase -->
         <div class="lg:col-span-5">
           <div class="relative">
-            <div class="rounded-2xl overflow-hidden shadow-xl bg-stone-100 aspect-[4/3] lg:aspect-[16/13] border border-stone-200/90 group">
+            <!-- Main Display Image with Smooth Crossfade -->
+            <div class="rounded-2xl overflow-hidden shadow-xl bg-stone-100 aspect-[4/3] lg:aspect-[16/13] border border-stone-200/90 relative group">
               <img 
+                id="heroMainImg"
                 src="assets/images/hero-fabrics.jpg" 
-                alt="Amna Arts luxury fancy unstitched fabric rolls showroom Lahore" 
-                class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700"
+                alt="Amna Arts wholesale showroom Lahore" 
+                class="w-full h-full object-cover hero-img-transition duration-500"
                 loading="eager"
               >
+
+              <!-- Floating Live Inventory Pill -->
+              <div class="absolute bottom-4 left-4 right-4 sm:right-auto bg-white/95 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-stone-200/90 shadow-md flex items-center justify-between sm:justify-start gap-3 animate-float-gentle">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+                  <div class="text-left">
+                    <span class="block text-xs font-bold text-stone-900" id="heroCaptionTitle">Winter / Festive 2026 Volume III</span>
+                    <span class="block text-[10.5px] text-stone-500" id="heroCaptionSub">Showroom Kashmiri Gate • Bulk Thaan Rolls</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 uppercase tracking-wider shrink-0">
+                  Live Stock
+                </span>
+              </div>
             </div>
-            
-            <!-- Understated Editorial Caption -->
-            <div class="mt-3.5 flex items-center justify-between text-xs text-stone-500 px-1">
-              <span class="flex items-center gap-1.5 font-medium text-stone-700">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                Winter / Festive 2026 Volume III
-              </span>
-              <span class="text-stone-400">Kashmiri Gate, Lahore</span>
+
+            <!-- Interactive Volume Switcher Pills -->
+            <div class="mt-4 flex flex-wrap items-center gap-2">
+              <button type="button" class="hero-pill-tab px-3.5 py-1.5 rounded-full text-xs font-semibold border bg-stone-900 text-white border-stone-900 shadow-xs cursor-pointer" aria-label="Showroom Rolls">
+                Showroom Rolls
+              </button>
+              <button type="button" class="hero-pill-tab px-3.5 py-1.5 rounded-full text-xs font-semibold border bg-white text-stone-600 border-stone-200 hover:border-stone-400 hover:bg-stone-50 transition-all cursor-pointer" aria-label="Festive 3-Piece">
+                Festive 3-Piece
+              </button>
+              <button type="button" class="hero-pill-tab px-3.5 py-1.5 rounded-full text-xs font-semibold border bg-white text-stone-600 border-stone-200 hover:border-stone-400 hover:bg-stone-50 transition-all cursor-pointer" aria-label="Azam Market Hub">
+                Azam Market Hub
+              </button>
+              <button type="button" class="hero-pill-tab px-3.5 py-1.5 rounded-full text-xs font-semibold border bg-white text-stone-600 border-stone-200 hover:border-stone-400 hover:bg-stone-50 transition-all cursor-pointer" aria-label="Reseller App">
+                Reseller App
+              </button>
             </div>
+
           </div>
         </div>
 

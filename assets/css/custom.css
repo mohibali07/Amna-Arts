@@ -108,3 +108,27 @@ input:focus, select:focus, textarea:focus {
   border-color: #C59A3F !important;
   box-shadow: 0 0 0 3px rgba(197, 154, 63, 0.2) !important;
 }
+
+/* Hero Animations & Micro-interactions */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+.hero-img-transition {
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-pill-tab.active {
+  background-color: #5A0B1A;
+  color: #FFFFFF;
+  border-color: #5A0B1A;
+}
+
+.hero-pill-tab {
+  transition: all 0.25s ease;
+}
